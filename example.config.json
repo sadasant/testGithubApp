@@ -1,0 +1,11 @@
+{
+  "github": {
+    "oauth": {
+      "clientId": "XXXXXXXX",
+      "clientSecret": "XXXXXXXX"
+    },
+    "webhook": {
+      "secret": "XXXXXX"
+    }
+  }
+}

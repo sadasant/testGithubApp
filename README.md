@@ -35,6 +35,9 @@ What I would love to do:
   these changes to the same PR. I know how to do this with DangerJS,
   so it seems like I might be able to do it using PRobot. I'm not sure
   how far is this from the scope of this exercise though.
+- If I ever reach this state, I think I will make another repo with a
+  better name! The current name I picked was because the other ones I
+  tried weren't available :(
 
 Things that I've found difficult:
 - I lost some time trying to figure which path is used by default a

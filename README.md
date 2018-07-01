@@ -1,13 +1,21 @@
-﻿# How to build your own
+﻿# Goal
+
+Make a Github Application that will:
+- Report CI errors on pull requests as comments.
+- Format the output of the problem.
+
+# How to build your own
 
 1. Create a github app: https://github.com/settings/apps/new
 
 Github App Name: testGithubApp-sadasant
-:8080/authCallback
-:8080/webhooks
+:3000/authCallback
+:3000/webhooks
 secret: XXXXXX
 
 Read more about the secret: https://developer.github.com/webhooks/securing/
+
+Copy the App ID to your .env
 
 Permissions:
 

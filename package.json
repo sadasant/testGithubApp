@@ -2,13 +2,13 @@
   "name": "testgithubapp",
   "version": "1.0.0",
   "description": "1. Create a github app: https://github.com/settings/apps/new",
-  "main": "app/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest --",
     "lint": "eslint '{,!(node_modules)/**/}*.js' *.js",
     "lint-fix": "eslint '{,!(node_modules)/**/}*.js' --fix",
     "fmt": "prettier --write '{,!(node_modules|coverage)/**/}*.js'",
-    "start": "probot run app/index.js"
+    "start": "probot run ./index.js"
   },
   "repository": {
     "type": "git",

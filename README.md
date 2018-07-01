@@ -9,8 +9,7 @@ Make a Github Application that will:
 1. Create a github app: https://github.com/settings/apps/new
 
 Github App Name: testGithubApp-sadasant
-:3000/authCallback
-:3000/webhooks
+:3000/webhook
 secret: XXXXXX
 
 Read more about the secret: https://developer.github.com/webhooks/securing/
@@ -49,4 +48,13 @@ Links to check what's up with your app:
 - https://github.com/settings/installations/228280
 
 ???? Where are the logs? I mean, where can I see good attempts &
-failed attempts?
+failed attempts? Here: https://github.com/settings/apps/testgithubapp-sadasant/advanced
+
+I was getting this error for a while:
+https://github.com/probot/template/issues/8
+I think it happened to me because I tried to remove the webhook secret
+from the app, so I didn't have one locally, but perhaps github was
+thinking the app had one??
+
+This issue was useful to understand the error:
+https://github.com/probot/friction/issues/16

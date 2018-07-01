@@ -5,6 +5,7 @@ const payload = require('../../../fixtures/pr_check_suite')
 describe('Checking CircleCI', () => {
   let app
   let github
+  let body = 'Pull Request Body'
 
   beforeEach(() => {
     app = new Application()
@@ -12,7 +13,12 @@ describe('Checking CircleCI', () => {
     // This is an easy way to mock out the GitHub API
     github = {
       pullRequests: {
-        createComment: jest.fn().mockReturnValue(
+        async get() {
+          return {
+            body
+          }
+        },
+        update: jest.fn().mockReturnValue(
           Promise.resolve({
             // Whatever the GitHub API should return
           })
@@ -26,7 +32,8 @@ describe('Checking CircleCI', () => {
   describe('your functionality', () => {
     it('performs an action', async () => {
       await app.receive({ event: 'check_suite', payload })
-      // expect(github.issues.createComment).toHaveBeenCalled()
+      expect(github.pullRequests.update).toHaveBeenCalled()
+      expect(github.pullRequests.update.mock.calls[0][0].body).not.toBe(body)
     })
   })
 })

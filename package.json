@@ -2,13 +2,13 @@
   "name": "testgithubapp",
   "version": "1.0.0",
   "description": "1. Create a github app: https://github.com/settings/apps/new",
-  "main": "app/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest --",
     "lint": "eslint '{,!(node_modules)/**/}*.js' *.js",
     "lint-fix": "eslint '{,!(node_modules)/**/}*.js' --fix",
     "fmt": "prettier --write '{,!(node_modules|coverage)/**/}*.js'",
-    "start": "probot run app/index.js"
+    "start": "probot run ./index.js"
   },
   "repository": {
     "type": "git",
@@ -25,22 +25,21 @@
     "semi": false
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/__tests__/setup.js"
-    ],
     "testMatch": [
       "<rootDir>/**/*.test.js"
     ],
     "collectCoverage": true
   },
   "dependencies": {
-    "probot": "^7.0.0"
+    "probot": "^7.0.0",
+    "probot-config": "^0.1.0"
   },
   "devDependencies": {
     "eslint": "^5.0.1",
     "eslint-plugin-jest": "^21.17.0",
     "jest": "^23.2.0",
     "jest-cli": "^23.2.0",
-    "prettier": "^1.13.7"
+    "prettier": "^1.13.7",
+    "smee-client": "^1.0.2"
   }
 }

@@ -25,16 +25,14 @@
     "semi": false
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/__tests__/setup.js"
-    ],
     "testMatch": [
       "<rootDir>/**/*.test.js"
     ],
     "collectCoverage": true
   },
   "dependencies": {
-    "probot": "^7.0.0"
+    "probot": "^7.0.0",
+    "probot-config": "^0.1.0"
   },
   "devDependencies": {
     "eslint": "^5.0.1",

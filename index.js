@@ -1,29 +1,14 @@
- let events = [
-  'check_run',
-  'check_suite',
-  'commit_comment',
-  'deployment',
-  'deployment_status',
-  'pull_request',
-  'pull_request_review',
-  'pull_request_review_comment',
-  'check.run',
-  'check.suite',
-  'commit.comment',
-  'deployment',
-  'deployment.status',
-  'pull.request',
-  'pull.request.comment',
-  'pull.request.review',
-  'pull.request.review.comment',
-  'issues.opened',
-]
-module.exports = app => {
-  console.log('STARTING')
-  for (let e of events) {
-    console.log({ e })
-    app.on(e, async context => {
-      app.log(e, context)
-    })
-  }
-}
+const { getEvents } = require('./utils/alias')
+
+// Here we initialize a PRobot that will listen to all the event
+// functions that we have declared in the events folder.
+module.exports = app =>
+  getEvents().map(
+    ({ event, name, path }) =>
+      app.log(`Activating ${event}/${name} ✓`) ||
+      app.on(
+        event,
+        async context =>
+          app.log(`Running ${event}/${name} ↣`) || require(path)(context)
+      )
+  )

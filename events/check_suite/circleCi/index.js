@@ -12,7 +12,7 @@ module.exports = async context => {
   let {
     data: { body }
   } = await context.github.pullRequests.get({ owner, repo, number })
-  let status = await circleci.getStatus()
-  body = `${body}\n${status}`
+  let status = await circleci.fetchStatus()
+  body = await circleci.addStatusTo(body, status)
   await context.github.pullRequests.update({ owner, repo, number, body })
 }

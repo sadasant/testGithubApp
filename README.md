@@ -43,3 +43,10 @@ Scroll to the bottom and copy the Client ID and Client Secret to
 Then, install your app on the repositories you might want.
 
 Then npm install in this repo
+
+Links to check what's up with your app:
+- ahttps://github.com/settings/apps/testgithubapp-sadasant
+- https://github.com/settings/installations/228280
+
+???? Where are the logs? I mean, where can I see good attempts &
+failed attempts?

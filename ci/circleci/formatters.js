@@ -36,14 +36,12 @@ const formatAction = ({
 //   ```
 // If there's no output_url, returns an empty string.
 //
-const formatOutputs = async ({ name, bash_command, output_url }) =>
+const formatOutput = async ({ name, bash_command, output_url }) =>
   output_url
-    ? `
-- **${name}**'s \`${bash_command}\`:
+    ? `- **${name}**'s \`${bash_command}\`:
 \`\`\`
 ${await request(output_url)}
-\`\`\`
-`
+\`\`\``
     : ''
 
 // Receives a CircleCI's ste, then formats it and every one of it's actions,
@@ -63,11 +61,23 @@ ${await request(output_url)}
 //   output
 //   ```
 //
-module.exports.formatStep = async step =>
+const formatSteps = async steps =>
   [
-    `**${name}:**`,
     actionsHeader,
-    ...step.actions.map(formatAction),
-    `**Output${step.actions.length > 1 ? 's' : ''}:**`,
-    ...Promise.all(step.actions.map(formatOutputs))
+    ...steps.map(step => step.actions.map(formatAction).join('\n')),
+    `**Output${steps.length > 1 ? 's' : ''}:**`,
+    ...(await Promise.all(
+      steps.map(async step =>
+        (await Promise.all(step.actions.map(formatOutput))).join('\n')
+      )
+    ))
   ].join('\n')
+
+// I really want imports and exports :(
+// Should I give it away and make this babel? or TS?
+// But that takes time...
+module.exports = {
+  formatAction,
+  formatOutput,
+  formatSteps
+}

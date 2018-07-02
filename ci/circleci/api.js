@@ -12,12 +12,12 @@ const circleAPICall = async ({ path, method = 'GET' }) =>
     json: true
   })
 
-module.export.lastBuildOnBranch = async ({ owner, repo, branch }) =>
+module.exports.lastBuildOnBranch = async ({ owner, repo, branch }) =>
   circleAPICall({
     path: `${owner}/${repo}/tree/${branch}`
   })
 
-module.export.specificBuild = async ({ owner, repo, build }) =>
+module.exports.specificBuild = async ({ owner, repo, build }) =>
   circleAPICall({
     path: `${owner}/${repo}/${build}`
   })

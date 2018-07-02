@@ -1,6 +1,6 @@
 let circleci = require('../../../ci/circleci')
-let { concatOnce } = require('../../utils/strings')
-let config = require('../../config.json')
+let { concatOnce } = require('../../../utils/strings')
+let config = require('../../../config.json')
 
 // check_suite circleCi
 //

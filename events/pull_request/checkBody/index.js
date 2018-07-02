@@ -5,5 +5,5 @@
 // of the CircleCI build.
 //
 module.exports = async context => {
-  console.info('TODO: checkBody on', context.event)
+  // console.info('TODO: checkBody on', context.event)
 }

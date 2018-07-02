@@ -15,7 +15,6 @@ module.exports = async context => {
   let {
     data: { body }
   } = await context.github.pullRequests.get({ owner, repo, number })
-  console.log('BODY', body)
 
   // TODO: Multi-CI-provider support
   let status = await circleci.fetchStatus({ owner, repo, branch: head_branch })

@@ -1,5 +1,10 @@
 const formatters = require('./formatters')
 
+let formattedFakeOutputUrl = `# out
+FAKE OUTPUT_URL OUT MESSAGE
+# err
+FAKE OUTPUT_URL ERR MESSAGE`
+
 describe('CircleCI Formatters', () => {
   describe('formatAction', () => {
     it('Should format an action properly', async () => {
@@ -24,12 +29,25 @@ describe('CircleCI Formatters', () => {
       let action = {
         name: 'lint',
         bash_command: 'npm run lint',
-        output_url: 'http://fake.butts.url:1337/'
+        output_url: 'http://fake.butts.output_url:1337/'
       }
       let formattedOutput = await formatters.formatOutput(action)
       let expectedResult = `- **lint**'s \`npm run lint\`:
 \`\`\`
-FAKE RESPONSE
+${formattedFakeOutputUrl}
+\`\`\``
+      expect(formattedOutput).toBe(expectedResult)
+    })
+    it("If the URL couldn't be fetched, it should show a reasonable message instead", async () => {
+      let action = {
+        name: 'lint',
+        bash_command: 'npm run lint',
+        output_url: 'http://fake.butts.wrong.output_url:1337/'
+      }
+      let formattedOutput = await formatters.formatOutput(action)
+      let expectedResult = `- **lint**'s \`npm run lint\`:
+\`\`\`
+Couldn't fetch the output file.
 \`\`\``
       expect(formattedOutput).toBe(expectedResult)
     })
@@ -52,7 +70,7 @@ FAKE RESPONSE
         bash_command: 'npm run lint',
         start_time: '2018-07-01T05:33:58.571Z',
         run_time_millis: 1024,
-        output_url: 'http://fake.butts.url:1337/'
+        output_url: 'http://fake.butts.output_url:1337/'
       }
       let step = {
         name: 'lint',
@@ -68,7 +86,7 @@ FAKE RESPONSE
 **Output:**
 - **lint**'s \`npm run lint\`:
 \`\`\`
-FAKE RESPONSE
+${formattedFakeOutputUrl}
 \`\`\``
       expect(formattedStep).toBe(expectedResult)
     })
@@ -80,7 +98,7 @@ FAKE RESPONSE
         bash_command: 'npm run lint',
         start_time: '2018-07-01T05:33:58.571Z',
         run_time_millis: 1024,
-        output_url: 'http://fake.butts.url:1337/'
+        output_url: 'http://fake.butts.output_url:1337/'
       }
       let step = {
         name: 'lint',
@@ -105,19 +123,19 @@ FAKE RESPONSE
 **Outputs:**
 - **lint**'s \`npm run lint\`:
 \`\`\`
-FAKE RESPONSE
+${formattedFakeOutputUrl}
 \`\`\`
 - **lint**'s \`npm run lint\`:
 \`\`\`
-FAKE RESPONSE
+${formattedFakeOutputUrl}
 \`\`\`
 - **lint**'s \`npm run lint\`:
 \`\`\`
-FAKE RESPONSE
+${formattedFakeOutputUrl}
 \`\`\`
 - **lint**'s \`npm run lint\`:
 \`\`\`
-FAKE RESPONSE
+${formattedFakeOutputUrl}
 \`\`\``
       expect(formattedStep).toBe(expectedResult)
     })

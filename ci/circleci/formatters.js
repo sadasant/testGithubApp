@@ -1,9 +1,16 @@
 const Promise = require('bluebird')
 const request = require('request-promise')
+const zlib = require('zlib')
+const util = require('util')
+const gunzip = util.promisify(zlib.gunzip)
 
 const actionsHeader = `
 | Name | Type | Status | Bash Command | Start Time | Duration |
 | ---  | ---  | ---    | ---          | ---        | ---      |`
+
+// CircleCI seems to add `#!/bin/bash -eo pipefail` as a separate line
+// before each one of the commands.
+let cleanCommand = x => x.replace(/^#!\/bin\/bash.*\n/, '')
 
 // Receives a CircleCI's step action, returns a string.
 // Wraps the action's details in the following shape:
@@ -22,7 +29,7 @@ const formatAction = ({
     name,
     type,
     status,
-    `\`${bash_command}\``,
+    `\`${cleanCommand(bash_command)}\``,
     start_time,
     `${run_time_millis} ms`,
     '' // Just so it adds a | at the end
@@ -36,13 +43,27 @@ const formatAction = ({
 //   ```
 // If there's no output_url, returns an empty string.
 //
-const formatOutput = async ({ name, bash_command, output_url }) =>
-  output_url
-    ? `- **${name}**'s \`${bash_command}\`:
+const formatOutput = async ({ name, bash_command, output_url }) => {
+  if (!output_url) return ''
+  let result = "Couldn't fetch the output file."
+  try {
+    let rawResult = await request(output_url)
+    let jsonResult = (await gunzip(rawResult)).toString('utf8')
+    let arrayResult = JSON.parse(jsonResult)
+    result = arrayResult
+      .map(
+        ({ message, type }) => `# ${type}
+${message}`
+      )
+      .join('\n')
+  } catch (e) {
+    console.info("Couldn't download and inflate", output_url)
+  }
+  return `- **${name}**'s \`${cleanCommand(bash_command)}\`:
 \`\`\`
-${await request(output_url)}
+${result}
 \`\`\``
-    : ''
+}
 
 // Receives a CircleCI's ste, then formats it and every one of it's actions,
 // it also fetches the action's output.

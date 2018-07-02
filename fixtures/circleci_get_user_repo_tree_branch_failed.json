@@ -1,0 +1,502 @@
+[ {
+  "compare" : "https://github.com/sadasant/testGithubApp/compare/4e981776b4b6...655792d7394c",
+  "previous_successful_build" : {
+    "build_num" : 14,
+    "status" : "success",
+    "build_time_millis" : 39189
+  },
+  "build_parameters" : null,
+  "oss" : false,
+  "all_commit_details_truncated" : false,
+  "committer_date" : "2018-07-02T04:16:21Z",
+  "body" : "",
+  "usage_queued_at" : "2018-07-02T04:16:39.898Z",
+  "fail_reason" : null,
+  "retry_of" : null,
+  "reponame" : "testGithubApp",
+  "ssh_users" : [ ],
+  "build_url" : "https://circleci.com/gh/sadasant/testGithubApp/18",
+  "parallel" : 1,
+  "failed" : true,
+  "branch" : "feature/fetchingCircleCIData",
+  "username" : "sadasant",
+  "author_date" : "2018-07-02T04:16:21Z",
+  "why" : "github",
+  "user" : {
+    "is_user" : true,
+    "login" : "sadasant",
+    "avatar_url" : "https://avatars2.githubusercontent.com/u/417016?v=4",
+    "name" : "Daniel Rodríguez",
+    "vcs_type" : "github",
+    "id" : 417016
+  },
+  "vcs_revision" : "655792d7394cec751f12ad49abc976a927785c52",
+  "vcs_tag" : null,
+  "build_num" : 18,
+  "infrastructure_fail" : false,
+  "committer_email" : "sadasant@gmail.com",
+  "has_artifacts" : true,
+  "previous" : {
+    "build_num" : 17,
+    "status" : "failed",
+    "build_time_millis" : 31823
+  },
+  "status" : "failed",
+  "committer_name" : "Daniel Rodríguez",
+  "retries" : null,
+  "subject" : "tests are starting to pass again",
+  "vcs_type" : "github",
+  "timedout" : false,
+  "dont_build" : null,
+  "lifecycle" : "finished",
+  "no_dependency_cache" : false,
+  "stop_time" : "2018-07-02T04:17:02.891Z",
+  "ssh_disabled" : true,
+  "build_time_millis" : 21227,
+  "picard" : {
+    "build_agent" : {
+      "image" : null,
+      "properties" : {
+        "build_agent" : "0.0.7107-cca5898",
+        "executor" : "docker"
+      }
+    },
+    "resource_class" : {
+      "cpu" : 2.0,
+      "ram" : 4096,
+      "class" : "medium"
+    },
+    "executor" : "docker"
+  },
+  "circle_yml" : {
+    "string" : "version: 2                                                                                                                                                                                                         \njobs:\n  build:\n    docker:\n      - image: circleci/node:9\n    working_directory: ~/testGithubApp\n    steps:\n      - checkout\n      - restore_cache:\n          key: dependency-cache\n      - run:\n          name: install\n          command: npm install\n      - save_cache:\n          key: dependency-cache\n          paths:\n            - ./node_modules\n      - run:\n          name: rebuild\n          command: npm rebuild --update-binary\n      - run:\n          name: lint\n          command: npm run lint\n      - run:\n          name: test\n          command: npm test\n"
+  },
+  "messages" : [ ],
+  "is_first_green_build" : false,
+  "job_name" : null,
+  "start_time" : "2018-07-02T04:16:41.664Z",
+  "canceler" : null,
+  "all_commit_details" : [ {
+    "committer_date" : "2018-07-02T04:16:21Z",
+    "body" : "",
+    "branch" : "feature/fetchingCircleCIData",
+    "author_date" : "2018-07-02T04:16:21Z",
+    "committer_email" : "sadasant@gmail.com",
+    "commit" : "655792d7394cec751f12ad49abc976a927785c52",
+    "committer_login" : "sadasant",
+    "committer_name" : "Daniel Rodríguez",
+    "subject" : "tests are starting to pass again",
+    "commit_url" : "https://github.com/sadasant/testGithubApp/commit/655792d7394cec751f12ad49abc976a927785c52",
+    "author_login" : "sadasant",
+    "author_name" : "Daniel Rodríguez",
+    "author_email" : "sadasant@gmail.com"
+  } ],
+  "platform" : "2.0",
+  "outcome" : "failed",
+  "vcs_url" : "https://github.com/sadasant/testGithubApp",
+  "author_name" : "Daniel Rodríguez",
+  "node" : null,
+  "queued_at" : "2018-07-02T04:16:39.918Z",
+  "canceled" : false,
+  "author_email" : "sadasant@gmail.com"
+}, {
+  "compare" : "https://github.com/sadasant/testGithubApp/compare/be03a891a40d...4e981776b4b6",
+  "previous_successful_build" : {
+    "build_num" : 14,
+    "status" : "success",
+    "build_time_millis" : 39189
+  },
+  "build_parameters" : null,
+  "oss" : false,
+  "all_commit_details_truncated" : false,
+  "committer_date" : "2018-07-01T23:23:27Z",
+  "body" : "",
+  "usage_queued_at" : "2018-07-01T23:23:34.360Z",
+  "fail_reason" : null,
+  "retry_of" : null,
+  "reponame" : "testGithubApp",
+  "ssh_users" : [ ],
+  "build_url" : "https://circleci.com/gh/sadasant/testGithubApp/17",
+  "parallel" : 1,
+  "failed" : true,
+  "branch" : "feature/fetchingCircleCIData",
+  "username" : "sadasant",
+  "author_date" : "2018-07-01T23:23:27Z",
+  "why" : "github",
+  "user" : {
+    "is_user" : true,
+    "login" : "sadasant",
+    "avatar_url" : "https://avatars2.githubusercontent.com/u/417016?v=4",
+    "name" : "Daniel Rodríguez",
+    "vcs_type" : "github",
+    "id" : 417016
+  },
+  "vcs_revision" : "4e981776b4b6801ad43cc0e5bd8a35f9623e2b9e",
+  "vcs_tag" : null,
+  "build_num" : 17,
+  "infrastructure_fail" : false,
+  "committer_email" : "sadasant@gmail.com",
+  "has_artifacts" : true,
+  "previous" : {
+    "build_num" : 16,
+    "status" : "failed",
+    "build_time_millis" : 25659
+  },
+  "status" : "failed",
+  "committer_name" : "Daniel Rodríguez",
+  "retries" : null,
+  "subject" : "progress with circleci",
+  "vcs_type" : "github",
+  "timedout" : false,
+  "dont_build" : null,
+  "lifecycle" : "finished",
+  "no_dependency_cache" : false,
+  "stop_time" : "2018-07-01T23:24:24.909Z",
+  "ssh_disabled" : true,
+  "build_time_millis" : 31823,
+  "picard" : {
+    "build_agent" : {
+      "image" : null,
+      "properties" : {
+        "build_agent" : "0.0.7107-cca5898",
+        "executor" : "docker"
+      }
+    },
+    "resource_class" : {
+      "cpu" : 2.0,
+      "ram" : 4096,
+      "class" : "medium"
+    },
+    "executor" : "docker"
+  },
+  "circle_yml" : {
+    "string" : "version: 2                                                                                                                                                                                                         \njobs:\n  build:\n    docker:\n      - image: circleci/node:9\n    working_directory: ~/testGithubApp\n    steps:\n      - checkout\n      - restore_cache:\n          key: dependency-cache\n      - run:\n          name: install\n          command: npm install\n      - save_cache:\n          key: dependency-cache\n          paths:\n            - ./node_modules\n      - run:\n          name: rebuild\n          command: npm rebuild --update-binary\n      - run:\n          name: lint\n          command: npm run lint\n      - run:\n          name: test\n          command: npm test\n"
+  },
+  "messages" : [ ],
+  "is_first_green_build" : false,
+  "job_name" : null,
+  "start_time" : "2018-07-01T23:23:53.086Z",
+  "canceler" : null,
+  "all_commit_details" : [ {
+    "committer_date" : "2018-07-01T23:23:27Z",
+    "body" : "",
+    "branch" : "feature/fetchingCircleCIData",
+    "author_date" : "2018-07-01T23:23:27Z",
+    "committer_email" : "sadasant@gmail.com",
+    "commit" : "4e981776b4b6801ad43cc0e5bd8a35f9623e2b9e",
+    "committer_login" : "sadasant",
+    "committer_name" : "Daniel Rodríguez",
+    "subject" : "progress with circleci",
+    "commit_url" : "https://github.com/sadasant/testGithubApp/commit/4e981776b4b6801ad43cc0e5bd8a35f9623e2b9e",
+    "author_login" : "sadasant",
+    "author_name" : "Daniel Rodríguez",
+    "author_email" : "sadasant@gmail.com"
+  } ],
+  "platform" : "2.0",
+  "outcome" : "failed",
+  "vcs_url" : "https://github.com/sadasant/testGithubApp",
+  "author_name" : "Daniel Rodríguez",
+  "node" : null,
+  "queued_at" : "2018-07-01T23:23:51.370Z",
+  "canceled" : false,
+  "author_email" : "sadasant@gmail.com"
+}, {
+  "compare" : "https://github.com/sadasant/testGithubApp/compare/537aa9328181...be03a891a40d",
+  "previous_successful_build" : {
+    "build_num" : 14,
+    "status" : "success",
+    "build_time_millis" : 39189
+  },
+  "build_parameters" : null,
+  "oss" : false,
+  "all_commit_details_truncated" : false,
+  "committer_date" : "2018-07-01T23:23:06Z",
+  "body" : "",
+  "usage_queued_at" : "2018-07-01T23:23:23.120Z",
+  "fail_reason" : null,
+  "retry_of" : null,
+  "reponame" : "testGithubApp",
+  "ssh_users" : [ ],
+  "build_url" : "https://circleci.com/gh/sadasant/testGithubApp/16",
+  "parallel" : 1,
+  "failed" : true,
+  "branch" : "feature/fetchingCircleCIData",
+  "username" : "sadasant",
+  "author_date" : "2018-07-01T23:23:06Z",
+  "why" : "github",
+  "user" : {
+    "is_user" : true,
+    "login" : "sadasant",
+    "avatar_url" : "https://avatars2.githubusercontent.com/u/417016?v=4",
+    "name" : "Daniel Rodríguez",
+    "vcs_type" : "github",
+    "id" : 417016
+  },
+  "vcs_revision" : "be03a891a40dca8caaba5fe67dc34e28d4e83f00",
+  "vcs_tag" : null,
+  "build_num" : 16,
+  "infrastructure_fail" : false,
+  "committer_email" : "sadasant@gmail.com",
+  "has_artifacts" : true,
+  "previous" : {
+    "build_num" : 15,
+    "status" : "failed",
+    "build_time_millis" : 24250
+  },
+  "status" : "failed",
+  "committer_name" : "Daniel Rodríguez",
+  "retries" : null,
+  "subject" : "progress with circleci",
+  "vcs_type" : "github",
+  "timedout" : false,
+  "dont_build" : null,
+  "lifecycle" : "finished",
+  "no_dependency_cache" : false,
+  "stop_time" : "2018-07-01T23:23:51.342Z",
+  "ssh_disabled" : true,
+  "build_time_millis" : 25659,
+  "picard" : {
+    "build_agent" : {
+      "image" : null,
+      "properties" : {
+        "build_agent" : "0.0.7107-cca5898",
+        "executor" : "docker"
+      }
+    },
+    "resource_class" : {
+      "cpu" : 2.0,
+      "ram" : 4096,
+      "class" : "medium"
+    },
+    "executor" : "docker"
+  },
+  "circle_yml" : {
+    "string" : "version: 2                                                                                                                                                                                                         \njobs:\n  build:\n    docker:\n      - image: circleci/node:9\n    working_directory: ~/testGithubApp\n    steps:\n      - checkout\n      - restore_cache:\n          key: dependency-cache\n      - run:\n          name: install\n          command: npm install\n      - save_cache:\n          key: dependency-cache\n          paths:\n            - ./node_modules\n      - run:\n          name: rebuild\n          command: npm rebuild --update-binary\n      - run:\n          name: lint\n          command: npm run lint\n      - run:\n          name: test\n          command: npm test\n"
+  },
+  "messages" : [ ],
+  "is_first_green_build" : false,
+  "job_name" : null,
+  "start_time" : "2018-07-01T23:23:25.683Z",
+  "canceler" : null,
+  "all_commit_details" : [ {
+    "committer_date" : "2018-07-01T23:23:06Z",
+    "body" : "",
+    "branch" : "feature/fetchingCircleCIData",
+    "author_date" : "2018-07-01T23:23:06Z",
+    "committer_email" : "sadasant@gmail.com",
+    "commit" : "be03a891a40dca8caaba5fe67dc34e28d4e83f00",
+    "committer_login" : "sadasant",
+    "committer_name" : "Daniel Rodríguez",
+    "subject" : "progress with circleci",
+    "commit_url" : "https://github.com/sadasant/testGithubApp/commit/be03a891a40dca8caaba5fe67dc34e28d4e83f00",
+    "author_login" : "sadasant",
+    "author_name" : "Daniel Rodríguez",
+    "author_email" : "sadasant@gmail.com"
+  } ],
+  "platform" : "2.0",
+  "outcome" : "failed",
+  "vcs_url" : "https://github.com/sadasant/testGithubApp",
+  "author_name" : "Daniel Rodríguez",
+  "node" : null,
+  "queued_at" : "2018-07-01T23:23:23.144Z",
+  "canceled" : false,
+  "author_email" : "sadasant@gmail.com"
+}, {
+  "compare" : "https://github.com/sadasant/testGithubApp/compare/67b7292af5bd...537aa9328181",
+  "previous_successful_build" : {
+    "build_num" : 14,
+    "status" : "success",
+    "build_time_millis" : 39189
+  },
+  "build_parameters" : null,
+  "oss" : false,
+  "all_commit_details_truncated" : false,
+  "committer_date" : "2018-07-01T20:49:31Z",
+  "body" : "",
+  "usage_queued_at" : "2018-07-01T20:49:35.767Z",
+  "fail_reason" : null,
+  "retry_of" : null,
+  "reponame" : "testGithubApp",
+  "ssh_users" : [ ],
+  "build_url" : "https://circleci.com/gh/sadasant/testGithubApp/15",
+  "parallel" : 1,
+  "failed" : true,
+  "branch" : "feature/fetchingCircleCIData",
+  "username" : "sadasant",
+  "author_date" : "2018-07-01T20:49:31Z",
+  "why" : "github",
+  "user" : {
+    "is_user" : true,
+    "login" : "sadasant",
+    "avatar_url" : "https://avatars2.githubusercontent.com/u/417016?v=4",
+    "name" : "Daniel Rodríguez",
+    "vcs_type" : "github",
+    "id" : 417016
+  },
+  "vcs_revision" : "537aa93281814ce770a35aa2c95646362af8b05c",
+  "vcs_tag" : null,
+  "build_num" : 15,
+  "infrastructure_fail" : false,
+  "committer_email" : "sadasant@gmail.com",
+  "has_artifacts" : true,
+  "previous" : {
+    "build_num" : 14,
+    "status" : "success",
+    "build_time_millis" : 39189
+  },
+  "status" : "failed",
+  "committer_name" : "Daniel Rodríguez",
+  "retries" : null,
+  "subject" : "using concatOnce in the circleci code",
+  "vcs_type" : "github",
+  "timedout" : false,
+  "dont_build" : null,
+  "lifecycle" : "finished",
+  "no_dependency_cache" : false,
+  "stop_time" : "2018-07-01T20:50:01.969Z",
+  "ssh_disabled" : true,
+  "build_time_millis" : 24250,
+  "picard" : {
+    "build_agent" : {
+      "image" : null,
+      "properties" : {
+        "build_agent" : "0.0.7107-cca5898",
+        "executor" : "docker"
+      }
+    },
+    "resource_class" : {
+      "cpu" : 2.0,
+      "ram" : 4096,
+      "class" : "medium"
+    },
+    "executor" : "docker"
+  },
+  "circle_yml" : {
+    "string" : "version: 2                                                                                                                                                                                                         \njobs:\n  build:\n    docker:\n      - image: circleci/node:9\n    working_directory: ~/testGithubApp\n    steps:\n      - checkout\n      - restore_cache:\n          key: dependency-cache\n      - run:\n          name: install\n          command: npm install\n      - save_cache:\n          key: dependency-cache\n          paths:\n            - ./node_modules\n      - run:\n          name: rebuild\n          command: npm rebuild --update-binary\n      - run:\n          name: lint\n          command: npm run lint\n      - run:\n          name: test\n          command: npm test\n"
+  },
+  "messages" : [ ],
+  "is_first_green_build" : false,
+  "job_name" : null,
+  "start_time" : "2018-07-01T20:49:37.719Z",
+  "canceler" : null,
+  "all_commit_details" : [ {
+    "committer_date" : "2018-07-01T20:49:31Z",
+    "body" : "",
+    "branch" : "feature/fetchingCircleCIData",
+    "author_date" : "2018-07-01T20:49:31Z",
+    "committer_email" : "sadasant@gmail.com",
+    "commit" : "537aa93281814ce770a35aa2c95646362af8b05c",
+    "committer_login" : "sadasant",
+    "committer_name" : "Daniel Rodríguez",
+    "subject" : "using concatOnce in the circleci code",
+    "commit_url" : "https://github.com/sadasant/testGithubApp/commit/537aa93281814ce770a35aa2c95646362af8b05c",
+    "author_login" : "sadasant",
+    "author_name" : "Daniel Rodríguez",
+    "author_email" : "sadasant@gmail.com"
+  } ],
+  "platform" : "2.0",
+  "outcome" : "failed",
+  "vcs_url" : "https://github.com/sadasant/testGithubApp",
+  "author_name" : "Daniel Rodríguez",
+  "node" : null,
+  "queued_at" : "2018-07-01T20:49:35.788Z",
+  "canceled" : false,
+  "author_email" : "sadasant@gmail.com"
+}, {
+  "compare" : "https://github.com/sadasant/testGithubApp/commit/67b7292af5bd",
+  "previous_successful_build" : {
+    "build_num" : 13,
+    "status" : "success",
+    "build_time_millis" : 30785
+  },
+  "build_parameters" : null,
+  "oss" : false,
+  "all_commit_details_truncated" : false,
+  "committer_date" : "2018-07-01T20:34:23Z",
+  "body" : "",
+  "usage_queued_at" : "2018-07-01T20:35:52.133Z",
+  "fail_reason" : null,
+  "retry_of" : null,
+  "reponame" : "testGithubApp",
+  "ssh_users" : [ ],
+  "build_url" : "https://circleci.com/gh/sadasant/testGithubApp/14",
+  "parallel" : 1,
+  "failed" : false,
+  "branch" : "feature/fetchingCircleCIData",
+  "username" : "sadasant",
+  "author_date" : "2018-07-01T20:34:23Z",
+  "why" : "github",
+  "user" : {
+    "is_user" : true,
+    "login" : "sadasant",
+    "avatar_url" : "https://avatars2.githubusercontent.com/u/417016?v=4",
+    "name" : "Daniel Rodríguez",
+    "vcs_type" : "github",
+    "id" : 417016
+  },
+  "vcs_revision" : "67b7292af5bd4a04f15e6cda6bb2996047f65327",
+  "vcs_tag" : null,
+  "build_num" : 14,
+  "infrastructure_fail" : false,
+  "committer_email" : "sadasant@gmail.com",
+  "has_artifacts" : true,
+  "previous" : null,
+  "status" : "success",
+  "committer_name" : "Daniel Rodríguez",
+  "retries" : null,
+  "subject" : "concatOnce string function",
+  "vcs_type" : "github",
+  "timedout" : false,
+  "dont_build" : null,
+  "lifecycle" : "finished",
+  "no_dependency_cache" : false,
+  "stop_time" : "2018-07-01T20:36:33.346Z",
+  "ssh_disabled" : true,
+  "build_time_millis" : 39189,
+  "picard" : {
+    "build_agent" : {
+      "image" : null,
+      "properties" : {
+        "executor" : "docker",
+        "build_agent" : "0.0.7107-cca5898"
+      }
+    },
+    "resource_class" : {
+      "cpu" : 2.0,
+      "ram" : 4096,
+      "class" : "medium"
+    },
+    "executor" : "docker"
+  },
+  "circle_yml" : {
+    "string" : "version: 2                                                                                                                                                                                                         \njobs:\n  build:\n    docker:\n      - image: circleci/node:9\n    working_directory: ~/testGithubApp\n    steps:\n      - checkout\n      - restore_cache:\n          key: dependency-cache\n      - run:\n          name: install\n          command: npm install\n      - save_cache:\n          key: dependency-cache\n          paths:\n            - ./node_modules\n      - run:\n          name: rebuild\n          command: npm rebuild --update-binary\n      - run:\n          name: lint\n          command: npm run lint\n      - run:\n          name: test\n          command: npm test\n"
+  },
+  "messages" : [ ],
+  "is_first_green_build" : false,
+  "job_name" : null,
+  "start_time" : "2018-07-01T20:35:54.157Z",
+  "canceler" : null,
+  "all_commit_details" : [ {
+    "committer_date" : "2018-07-01T20:34:23Z",
+    "body" : "",
+    "branch" : "feature/fetchingCircleCIData",
+    "author_date" : "2018-07-01T20:34:23Z",
+    "committer_email" : "sadasant@gmail.com",
+    "commit" : "67b7292af5bd4a04f15e6cda6bb2996047f65327",
+    "committer_login" : "sadasant",
+    "committer_name" : "Daniel Rodríguez",
+    "subject" : "concatOnce string function",
+    "commit_url" : "https://github.com/sadasant/testGithubApp/commit/67b7292af5bd4a04f15e6cda6bb2996047f65327",
+    "author_login" : "sadasant",
+    "author_name" : "Daniel Rodríguez",
+    "author_email" : "sadasant@gmail.com"
+  } ],
+  "platform" : "2.0",
+  "outcome" : "success",
+  "vcs_url" : "https://github.com/sadasant/testGithubApp",
+  "author_name" : "Daniel Rodríguez",
+  "node" : null,
+  "queued_at" : "2018-07-01T20:35:52.158Z",
+  "canceled" : false,
+  "author_email" : "sadasant@gmail.com"
+} ]

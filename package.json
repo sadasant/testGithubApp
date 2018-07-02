@@ -30,7 +30,8 @@
     ],
     "collectCoverage": true,
     "moduleNameMapper": {
-      "../../config.json": "<rootDir>/public.config.json"
+      "../../config.json": "<rootDir>/public.config.json",
+      "../config.json": "<rootDir>/public.config.json"
     }
   },
   "dependencies": {

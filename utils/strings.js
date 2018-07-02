@@ -9,7 +9,15 @@
 // preserving the input text that existed before and after the block.
 //
 module.exports.concatOnce = ({ input, start, end, body }) => {
-  let matchTheOldBlock = new RegExp(`${start}(\n|.)*${end}`)
-  let [before, , after = ''] = input.split(matchTheOldBlock)
-  return `${before}${start}${body}${end}${after}`
+  let startIndex = input.indexOf(start)
+  let endIndex = input.lastIndexOf(end)
+  let textBefore = ''
+  let textAfter = ''
+  if ([startIndex, endIndex].includes(-1)) {
+    textBefore = input
+  } else {
+    textBefore = input.slice(0, startIndex)
+    textAfter = input.slice(endIndex + end.length)
+  }
+  return `${textBefore}${start}${body}${end}${textAfter}`
 }

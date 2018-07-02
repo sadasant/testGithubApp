@@ -1,4 +1,5 @@
 const strings = require('./strings')
+const config = require('../config.json')
 
 describe('String Utils', () => {
   describe('concatOnce', () => {
@@ -6,8 +7,7 @@ describe('String Utils', () => {
 should should only concat a multi-line string once,
 even if it's called again with it's own output`)
 
-    let start = `<span data="probot-comment-start"></span>`
-    let end = `<span data="probot-comment-start"></span>`
+    let { start, end } = config.status
     let body = `PRobot comment!`
 
     it('Should work on strings that have nothing after the body of the concatenation', async () => {
@@ -23,7 +23,7 @@ even if it's called again with it's own output`)
       expect(result).toBe(`${input}${start}${body}${end}`)
     })
 
-    it('sHould work on strings that have content under the concatenation body', async () => {
+    it('Should work on strings that have content under the concatenation body', async () => {
       let input = `
       This string has multiple lines
       Here we have the second line

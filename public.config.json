@@ -1,8 +1,8 @@
 {
   "header": "\nPR ROBOT :robot:\n---\n",
   "status": {
-    "start": "<span data=\"probot-comment-start\"></span>",
-    "end": "<span data=\"probot-comment-end\"></span>"
+    "start": "<span data=\"probot-comment-start\"/>",
+    "end": "<span data=\"probot-comment-end\"/>"
   },
   "circleCi": {
   }

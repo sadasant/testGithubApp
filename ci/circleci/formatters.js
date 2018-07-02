@@ -3,6 +3,7 @@ const request = require('request-promise')
 const zlib = require('zlib')
 const util = require('util')
 const gunzip = util.promisify(zlib.gunzip)
+const stripAnsi = require('strip-ansi')
 
 const actionsHeader = `
 | Name | Type | Status | Bash Command | Start Time | Duration |
@@ -47,13 +48,16 @@ const formatOutput = async ({ name, bash_command, output_url }) => {
   if (!output_url) return ''
   let result = "Couldn't fetch the output file."
   try {
-    let rawResult = await request(output_url)
+    let rawResult = await request({
+      uri: output_url,
+      encoding: null
+    })
     let jsonResult = (await gunzip(rawResult)).toString('utf8')
     let arrayResult = JSON.parse(jsonResult)
     result = arrayResult
       .map(
         ({ message, type }) => `# ${type}
-${message}`
+${stripAnsi(message)}`
       )
       .join('\n')
   } catch (e) {

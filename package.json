@@ -28,11 +28,18 @@
     "testMatch": [
       "<rootDir>/**/*.test.js"
     ],
-    "collectCoverage": true
+    "collectCoverage": true,
+    "moduleNameMapper": {
+      "../../config.json": "<rootDir>/public.config.json"
+    }
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "probot": "^7.0.0",
-    "probot-config": "^0.1.0"
+    "probot-config": "^0.1.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "strip-ansi": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^5.0.1",

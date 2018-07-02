@@ -1,4 +1,6 @@
 let circleci = require('../../../ci/circleci')
+let { concatOnce } = require('../../../utils/strings')
+let config = require('../../../config.json')
 
 // check_suite circleCi
 //
@@ -8,11 +10,21 @@ let circleci = require('../../../ci/circleci')
 //
 module.exports = async context => {
   const { owner, repo } = context.repo()
+  const { head_branch } = context.payload.check_suite
   const [{ number }] = context.payload.check_suite.pull_requests
   let {
     data: { body }
   } = await context.github.pullRequests.get({ owner, repo, number })
-  let status = await circleci.getStatus()
-  body = `${body}\n${status}`
+
+  // TODO: Multi-CI-provider support
+  let status = await circleci.fetchStatus({ owner, repo, branch: head_branch })
+
+  body = concatOnce({
+    input: body,
+    start: config.status.start,
+    end: config.status.end,
+    body: status
+  })
+
   await context.github.pullRequests.update({ owner, repo, number, body })
 }

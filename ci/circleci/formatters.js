@@ -97,7 +97,7 @@ const formatSteps = async steps =>
         (await Promise.all(step.actions.map(formatOutput))).join('\n')
       )
     )),
-    '', // New line
+    '' // New line
   ].join('\n')
 
 // I really want imports and exports :(

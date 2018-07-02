@@ -9,7 +9,8 @@ module.exports.fetchStatus = async ({ owner, repo, branch }) => {
     repo,
     branch
   })
-  if (status === 'success') return `${config.header}\nCircleCI Passed! :clap::white_check_mark:`
+  if (status === 'success')
+    return `${config.header}\nCircleCI Passed! :clap::white_check_mark:`
 
   const { steps } = await api.specificBuild({ owner, repo, build: build_num })
   const failingSteps = filterFailing(steps)

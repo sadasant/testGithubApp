@@ -1,6 +1,7 @@
 const api = require('./api')
 const { filterFailing } = require('./transformations')
 const { formatSteps } = require('./formatters')
+const config = require('../../config.json')
 
 module.exports.fetchStatus = async ({ owner, repo, branch }) => {
   const [{ status, build_num }] = await api.lastBuildOnBranch({
@@ -8,9 +9,9 @@ module.exports.fetchStatus = async ({ owner, repo, branch }) => {
     repo,
     branch
   })
-  if (status === 'success') return `CircleCI Passed! :clap::white_check_mark:`
+  if (status === 'success') return `${config.header}\nCircleCI Passed! :clap::white_check_mark:`
 
   const { steps } = await api.specificBuild({ owner, repo, build: build_num })
   const failingSteps = filterFailing(steps)
-  return formatSteps(failingSteps)
+  return `${config.header}\n${await formatSteps(failingSteps)}`
 }

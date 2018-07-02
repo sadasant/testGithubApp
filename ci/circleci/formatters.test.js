@@ -83,11 +83,13 @@ Couldn't fetch the output file.
 |${action.name}|${action.type}|${action.status}|\`${action.bash_command}\`|${
         action.start_time
       }|${action.run_time_millis} ms|
+
 **Output:**
 - **lint**'s \`npm run lint\`:
 \`\`\`
 ${formattedFakeOutputUrl}
-\`\`\``
+\`\`\`
+`
       expect(formattedStep).toBe(expectedResult)
     })
     it('Should handle multiple steps', async () => {
@@ -120,6 +122,7 @@ ${formattedFakeOutputUrl}
 |${action.name}|${action.type}|${action.status}|\`${action.bash_command}\`|${
         action.start_time
       }|${action.run_time_millis} ms|
+
 **Outputs:**
 - **lint**'s \`npm run lint\`:
 \`\`\`
@@ -136,7 +139,8 @@ ${formattedFakeOutputUrl}
 - **lint**'s \`npm run lint\`:
 \`\`\`
 ${formattedFakeOutputUrl}
-\`\`\``
+\`\`\`
+`
       expect(formattedStep).toBe(expectedResult)
     })
   })

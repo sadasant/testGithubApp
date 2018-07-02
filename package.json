@@ -28,7 +28,10 @@
     "testMatch": [
       "<rootDir>/**/*.test.js"
     ],
-    "collectCoverage": true
+    "collectCoverage": true,
+    "moduleNameMapper": {
+      "../../config.json": "<rootDir>/public.config.json"
+    }
   },
   "dependencies": {
     "bluebird": "^3.5.1",

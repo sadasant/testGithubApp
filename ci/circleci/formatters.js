@@ -57,7 +57,7 @@ ${message}`
       )
       .join('\n')
   } catch (e) {
-    console.info("Couldn't download and inflate", output_url)
+    console.info("Couldn't download and inflate", output_url, e)
   }
   return `- **${name}**'s \`${cleanCommand(bash_command)}\`:
 \`\`\`
@@ -86,12 +86,14 @@ const formatSteps = async steps =>
   [
     actionsHeader,
     ...steps.map(step => step.actions.map(formatAction).join('\n')),
+    '', // New line
     `**Output${steps.length > 1 ? 's' : ''}:**`,
     ...(await Promise.all(
       steps.map(async step =>
         (await Promise.all(step.actions.map(formatOutput))).join('\n')
       )
-    ))
+    )),
+    '', // New line
   ].join('\n')
 
 // I really want imports and exports :(

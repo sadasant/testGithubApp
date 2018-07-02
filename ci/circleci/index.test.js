@@ -1,10 +1,5 @@
 const circleci = require('./')
 
-let formattedFakeOutputUrl = `# out
-FAKE OUTPUT_URL OUT MESSAGE
-# err
-FAKE OUTPUT_URL ERR MESSAGE`
-
 describe("CircleCI's main API", () => {
   describe('fetchStatus', () => {
     it("Should fetch the latest build's status and format it properly", async () => {
@@ -22,16 +17,22 @@ describe("CircleCI's main API", () => {
         run_time_millis: 5715
       }
       let expectedResult = `
+PR ROBOT :robot:
+---
+
+
 | Name | Type | Status | Bash Command | Start Time | Duration |
 | ---  | ---  | ---    | ---          | ---        | ---      |
 |${action.name}|${action.type}|${action.status}|\`${action.bash_command}\`|${
         action.start_time
       }|${action.run_time_millis} ms|
+
 **Output:**
 - **test**'s \`npm test\`:
 \`\`\`
 Couldn't fetch the output file.
-\`\`\``
+\`\`\`
+`
       expect(result).toBe(expectedResult)
     })
   })

@@ -1,9 +1,11 @@
 {
   "header": "\nPR ROBOT :robot:\n---\n",
+  "smallHeader": ":robot: ",
   "status": {
     "start": "<span data=\"probot-comment-start\"/>",
     "end": "<span data=\"probot-comment-end\"/>"
   },
   "circleCi": {
+    "delay": 250
   }
 }

@@ -7,6 +7,7 @@ This project holds a boilerplate to build Github Apps, with some small functiona
 ## Index
 
 - [Current Features](#current-features)
+- [Maybe Future Features](#maybe-future-features)
 - [How to build](#how-to-build)
 - [My reasoning while building this](#my-reasoning-while-building-this)
   - [Design Decisions](#design-decisions)
@@ -15,7 +16,26 @@ This project holds a boilerplate to build Github Apps, with some small functiona
 - [Resources](#resources)
 
 ## Current Features
-##
+
+As a Github App, this repo adds a little (but useful!) layer of functionality over Github!
+
+**The main user-oriented features are:**
+- A live listener to Pull Request updates and CI events that will try hard to retrieve useful information from CI providers (currently only **CircleCI**).
+- The information it obtains is added to the **description** of the open Pull Request **without affecting it**, you can later add information to it, either before or after the contents added by this robot and your information will never be removed (but the message by the robot might change as you make changes to your PR).
+- It tells you when your CI build failed or passed! Here are some screenshots:
+
+_(A failing PR)_
+![](https://i.imgur.com/1wP6o6K.png)
+
+_(Later, when it passed)_
+![](https://i.imgur.com/DX69z2e.png)
+
+**The main features as a Github App boilerplate:**
+
+**Other neat features for developers:**
+
+
+## Maybe Future Features
 
 This is what I have right now:
 - A folder structure where all the event handlers are grouped by event

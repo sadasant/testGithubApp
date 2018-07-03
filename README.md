@@ -2,11 +2,15 @@
 
 Welcome to this repo 🖖
 
+
+<img align="left" height="150px" src="https://i0.wp.com/gifrific.com/wp-content/uploads/2017/05/terry-crews-dancing-robot.gif?ssl=1">
 This project holds a boilerplate to build Github Apps, with some small functionalities that are both useful as well as just concepts for myself and others to play with. :bowtie: Join me in this journey to discover what else amazing can be done!
+<br/><br/><br/>
 
 ## Index
 
 - [Current Features](#current-features)
+- [Folder Structure](#folder-structure)
 - [Maybe Future Features](#maybe-future-features)
 - [How to build](#how-to-build)
 - [My reasoning while building this](#my-reasoning-while-building-this)
@@ -24,18 +28,33 @@ As a Github App, this repo adds a little (but useful!) layer of functionality ov
 - The information it obtains is added to the **description** of the open Pull Request **without affecting it**, you can later add information to it, either before or after the contents added by this robot and your information will never be removed (but the message by the robot might change as you make changes to your PR).
 - It tells you when your CI build failed or passed! Here are some screenshots:
 
-_(A failing PR)_
-![](https://i.imgur.com/1wP6o6K.png)
+_(A failing PR)_  
+<img height="450" src="https://i.imgur.com/1wP6o6K.png">
 
-_(Later, when it passed)_
-![](https://i.imgur.com/DX69z2e.png)
+_(Later, when it passed)_  
+<img height="225" src="https://i.imgur.com/DX69z2e.png">
+
+Besides being useful for end users, I made this repo as a template for me (and possibly others) to work with any form or shape of Github App! Here's why I think this:
 
 **The main features as a Github App boilerplate:**
+- The folder structure is such that you can grow in size on your terms! We'll elaborate more on the following bullet points, but you can also read more on our [Design Decisions](#design-decisions).
+- The main index file automatically recognizes what events you want to subscribe to, based on the event folders you have in `events`. For example: Right now, we're subscribing to the `check_suite` and `pull_request` events. If you want to add listeners for other events, you would only need to add folders with the name of these events, with folders named to highlight the functionality of your listener. The index file will run all the different `<event>/<functionality>/index.js` you have!
+- We have a `ci` folder aiming to contain all the functionalities needed to work with the different CI providers. We currently only work with CircleCI, but the functions in `ci/circleci` should show a decent approach for what is needed to work with any other CI.
+- We have a function called `prettyPlease` in the `prettifiers` folder, that allows you to build file formatters by creating new folders in `prettifiers` with an `index.js` that exposes two functions: `validate` and `prettify`, where `validate` deals with checking wether the output should be prettified or not. These file formatters matter because the CI providers provide raw outputs of why each of their build steps failed, and this output can be too verbose for developers to identify where the problems are. Right now, we have only one prettifier that works with Jest, but it should work as the scaffoldings for building more. The idea with `prettyPlease` is that it will try to format a specific output, and return the original output as is if nothing matches.
+
+![](https://i.imgur.com/o1ytFXV.png)
 
 **Other neat features for developers:**
-
+<img align="right" height="300" src="https://i.imgur.com/095rvzR.png">
+- It's 100% unit tested! Including functions, API calls to remote endpoints, formattings and dispatching and handling Github Webhook events.
+- We have a minimal layer of mocked utilities - right now I'm only mocking `request-promise` [here](https://github.com/sadasant/testGithubApp/blob/master/__mocks__/request-promise.js), which should prove that you can build entirely functional Github Apps with no connection to the internet! 😆
+- We use `prettier` and `eslint` to automatically format the code of the repository (you still need to call `npm run fmt`). The idea is that we should reduce the number of possible dissagreements over code styles and formats and just let the tools handle that for us :) ... I realize that you might be familiar with that, so let's move to the next point!
+- We have as minimal dependencies as possible!
 
 ## Maybe Future Features
+
+
+---
 
 This is what I have right now:
 - A folder structure where all the event handlers are grouped by event

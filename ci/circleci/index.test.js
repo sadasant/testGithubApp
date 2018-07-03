@@ -61,5 +61,17 @@ Couldn't fetch the output file.
       } CircleCI Passed! :clap::white_check_mark:`
       expect(result).toBe(expectedResult)
     })
+
+    it('Should fail properly if the last builds are not found', async () => {
+      let result = await circleci.fetchStatus({
+        owner: 'sadasant',
+        repo: 'MISSINGREPO',
+        branch: 'feature/fetchingCircleCIData'
+      })
+      let expectedResult = `\n${
+        config.smallHeader
+      } This repository doesn't seem to be configured with CircleCI.`
+      expect(result).toBe(expectedResult)
+    })
   })
 })

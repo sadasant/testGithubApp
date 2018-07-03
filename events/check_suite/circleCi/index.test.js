@@ -2,7 +2,7 @@ const { Application } = require('probot')
 const plugin = require('../../../index')
 const payload = require('../../../fixtures/pr_check_suite')
 
-describe('Checking CircleCI', () => {
+describe('check_suite CircleCI', () => {
   let app
   let github
   let body
@@ -34,13 +34,17 @@ describe('Checking CircleCI', () => {
 
   describe("should update the PR's body", () => {
     it('should work two times', async () => {
-      await app.receive({ event: 'check_suite', payload })
-      body = github.pullRequests.update.mock.calls[0][0].body
+      // First call
       await app.receive({ event: 'check_suite', payload })
       expect(github.pullRequests.update).toHaveBeenCalled()
       expect(
-        github.pullRequests.update.mock.calls[1][0].body.indexOf(body)
+        github.pullRequests.update.mock.calls[0][0].body.indexOf(body)
       ).toBe(0)
+
+      // Second call
+      body = github.pullRequests.update.mock.calls[0][0].body
+      await app.receive({ event: 'check_suite', payload })
+      expect(github.pullRequests.update).toHaveBeenCalled()
       expect(github.pullRequests.update.mock.calls[1][0].body).toBe(body)
     })
   })

@@ -22,6 +22,7 @@ const fetchStatus = async params => {
   // change the params while this function waits for the build to pass.
   let { owner, repo, branch } = params
 
+  // Retrieving the latest builds for that owner/repo/branch
   let result = await api.lastBuilds({
     owner,
     repo,
@@ -39,12 +40,18 @@ const fetchStatus = async params => {
     return `\n${config.smallHeader} CircleCI Passed! :clap::white_check_mark:`
 
   if (status === 'queued') {
+    // Infinite Jest!
     await Promise.delay(config.circleCi.delay)
     return fetchStatus(params)
   }
 
+  // Retrieving the details of the latest build
   let { steps } = await api.specificBuild({ owner, repo, build: build_num })
+
+  // Formatting the failing steps of the build
   let failingSteps = filterFailing(steps)
+
+  // And that's it!
   return `${config.header}\n${await formatSteps(failingSteps)}`
 }
 

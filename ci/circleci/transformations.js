@@ -1,3 +1,6 @@
+// Receives a list of CircleCI build steps,
+// returns only the steps that have failed actions,
+// omit successful actions from those steps.
 module.exports.filterFailing = steps =>
   steps
     // Making sure we only return steps that have failing actions

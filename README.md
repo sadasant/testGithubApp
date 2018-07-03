@@ -9,17 +9,15 @@ This project holds a boilerplate to build Github Apps, with some small functiona
 
 ## Index
 
-- [Current Features](#current-features)
-- [Folder Structure](#folder-structure)
-- [Maybe Future Features](#maybe-future-features)
+- [Current features](#current-features)
+- [Folder structure](#folder-structure)
+- [Maybe future features](#maybe-future-features)
 - [How to build](#how-to-build)
-- [My reasoning while building this](#my-reasoning-while-building-this)
-  - [Design Decisions](#design-decisions)
-  - [Disclaimer](#disclaimer)
-  - [Now What](#now-what)
+- [I want to use it right now!)(#i-want-to-use-it-right-now)
+- [Disclaimer](#disclaimer)
 - [Resources](#resources)
 
-## Current Features
+## Current features
 
 As a Github App, this repo adds a little (but useful!) layer of functionality over Github!
 
@@ -37,7 +35,7 @@ _(Later, when it passed)_
 Besides being useful for end users, I made this repo as a template for me (and possibly others) to work with any form or shape of Github App! Here's why I think this:
 
 **The main features as a Github App boilerplate:**
-- The folder structure is such that you can grow in size on your terms! We'll elaborate more on the following bullet points, but you can also read more on our [Design Decisions](#design-decisions).
+- The folder structure is such that you can grow in size on your terms! We'll elaborate more on the following bullet points.
 - The main index file automatically recognizes what events you want to subscribe to, based on the event folders you have in `events`. For example: Right now, we're subscribing to the `check_suite` and `pull_request` events. If you want to add listeners for other events, you would only need to add folders with the name of these events, with folders named to highlight the functionality of your listener. The index file will run all the different `<event>/<functionality>/index.js` you have!
 - We have a `ci` folder aiming to contain all the functionalities needed to work with the different CI providers. We currently only work with CircleCI, but the functions in `ci/circleci` should show a decent approach for what is needed to work with any other CI.
 - We have a function called `prettyPlease` in the `prettifiers` folder, that allows you to build file formatters by creating new folders in `prettifiers` with an `index.js` that exposes two functions: `validate` and `prettify`, where `validate` deals with checking wether the output should be prettified or not. These file formatters matter because the CI providers provide raw outputs of why each of their build steps failed, and this output can be too verbose for developers to identify where the problems are. Right now, we have only one prettifier that works with Jest, but it should work as the scaffoldings for building more. The idea with `prettyPlease` is that it will try to format a specific output, and return the original output as is if nothing matches.
@@ -51,51 +49,67 @@ Besides being useful for end users, I made this repo as a template for me (and p
 - We use `prettier` and `eslint` to automatically format the code of the repository (you still need to call `npm run fmt`). The idea is that we should reduce the number of possible dissagreements over code styles and formats and just let the tools handle that for us :) ... I realize that you might be familiar with that, so let's move to the next point!
 - We have as minimal dependencies as possible!
 
-## Maybe Future Features
+## Maybe future features
 
+Because this is a concept application, I'm not exploring all the ideas I have, but I still would like this to reach the point where it can do at least these two ideas:
 
----
+1. Pull Request Review with in-line comments about why CI failed, if CI's output happens to show that any of the files changed by the PR are causing some step to fail. Here's an issue: https://github.com/sadasant/testGithubApp/issues/15
+2. Optionally auto-format code in pull request. I believe that in the output we generate, we could add a link that would trigger us to fork the repo, run run `npm run fmt` and push teh changes to the PR! Here's an issue: https://github.com/sadasant/testGithubApp/issues/17
 
-This is what I have right now:
-- A folder structure where all the event handlers are grouped by event
-  name, so let's say we have a handler called `circleCIStatus` for the
-  event `check_suite`, it will be located in
-  `<ProjectRoot>/events/check_suite/circleCIStatus/index.js`. Where
-  the handler file is an index.js file to leverage the existence of a
-  folder to put relevant utilities in co-located files.
-- A central `index.js` that subscribes only to the events where we
-  have handlers, and runs these handlers as soon as one of these
-  events is received.
-- A handler for the event `check_suite` which fetches the pull request
-  and updates the pull request's body with a simple message (the same
-  as the one visible at the end of this body). It is fully unit
-  tested! - This is my first handler, what it does might be simple,
-  but it's almost what I want it to do.
-- The repo is fully linted and prettified.
-- The repo builds with CircleCI.
+## How to build
 
-My current immediate plan:
-- Make a function to fetch CircleCI's API to retrieve the current
-  status of the build, then prettify this output as much as possible,
-  then put this output at the bottom of the pull request's body. This
-  function (or set of functions) will make sure the prettified status
-  is only added once to the body.
-- Call this function from two events, `check_suite` and
-  `pull_request`, so if people remove the status from the pull request
-  body, we add it again.
+Since this is more of a boilerplate for your own app, I'm including steps on how to set up your app!
 
-What I would love to do:
-- It seems that I might have a decent amount of fun if I find a way to
-  offer an optional code-formatting tool, where if the user sends a
-  message in the PR, like `fmt`, or if they click on a link we put in
-  the body, then we would fetch the repository locally, run `npm run
-  fmt` to see if there are any files that need to be fixed, then push
-  these changes to the same PR. I know how to do this with DangerJS,
-  so it seems like I might be able to do it using PRobot. I'm not sure
-  how far is this from the scope of this exercise though.
-- If I ever reach this state, I think I will make another repo with a
-  better name! The current name I picked was because the other ones I
-  tried weren't available :(
+1. Create a github app
+
+- Go to: https://github.com/settings/apps/new
+- Fill down the form.
+- Keep in mind that the webhook endpoint will try to call the `/webhook` route.
+- Add permissions to: Checks (read) and Pull requests (read and write).
+- **Important**, if you add a secret, make sure you save it, because I was unsuccessful removing the secret! Read more about the secret: https://developer.github.com/webhooks/securing/
+- **Important**, make sure you copy the `App ID` that is visible once you finish creating the application. You can always go back and see it, but it might not be obvious how to get there 😅Here's a link just in case: https://github.com/settings/apps
+- Generate a Private Key and download it.
+- After you finish creating it, install your app on the repositories you might want.
+
+2. Install NodeJS
+
+You'll need NodeJS. I like using nvm, since it gives you the freedom to move back and forward between one version and another. Just as they say in their README, you can install NVM with:
+
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
+Other tools like `npx` look cool! I haven't tried it though.
+
+3. Fork this repo
+
+- Just `git clone https://github.com/sadasant/testGithubApp` is enough :-)
+- Copy the downloaded Private Key to the root of this repo!
+- Once in the root of this repo, run `npm install`
+
+4. Create your `.env` file
+
+- Copy the `.env.example` file into a new file called `.env`.
+- Paste the App ID in your `.env` file, as `APP_ID=XXXX`.
+- Paste th Webhook Secret in your `.env` file too, as `WEBHOOK_SECRET=XXXX`.
+
+5. Create your `config.json` file
+
+- Copy the `public.config.json` to `config.json`.
+- Get your CircleCI's personal API token following this guide: https://github.com/probot/probot-config
+- Add a new property in the `circleCi` object called `apiToken`, paste your API token there, like this: `"apiToken": "XXXX"`. Make sure that your JSON file is valid!
+
+## I want to use it right now!
+
+I'm currently hosting this app in one of my servers, and it's running intermitently since I use these servers for other purposes. The APP is live for this repo, but it is unlisted :/ I'm hesitant to list it with so little features. I also dislike the name 🤔
+
+Right now you can run `npm test` to run the unit tests 🙈✅
+
+## Disclaimer
+
+I personally believe that this project is a decent blueprint for other Github Apps, and as a tool it offers a decent amount of functionality. However, considering this is my first Github App ever, I'm sure with more experience working on them, some of the design decisions might change.
+
+Here's some self criticism:
+- I should have cleaned up the `fixtures`, or not include them in the tree, since they contan information that might not be relevant for the public.
+- The `ci/circleci` tools, and the `prettifiers/jest/utils.js` utiity functions, contain a fair bit of text manipulation that can easily break if an unexpected input appears. This can be improved with some pattern matching utility.
 
 Things that I've found difficult:
 - I lost some time trying to figure which path is used by default a
@@ -113,55 +127,10 @@ Things that I've found difficult:
   webhook secret again both in the Github App's settings and in my
   `.env` file, my Probot started working!
 
-Those were really the only things, the rest of it has been a breeze!
-I'm impressed on how the utilities for Github apps have advanced since
-I used the Github API for production applications (6 years ago).
+Things that I think I could have done better:
+- I know I could have used the `.env` file for all my configurations, and I also know that [probot-config](https://github.com/probot/probot-config) exists (I even have it in the package.json). Leveraging that file and that tool probably worths it, but I haven't checked.
 
----
-
-The rest of the readme is very much WIP, just notes I've taken in the
-process. I will clean this up as soon as I finish with the
-functionalities, the tests and the in-comments documentation.
-
----
-
-# Goal
-
-Make a Github Application that will:
-- Report CI errors on pull requests as comments.
-- Format the output of the problem.
-
-# How to build your own
-
-1. Create a github app: https://github.com/settings/apps/new
-
-Github App Name: testGithubApp-sadasant
-:3000/webhook
-secret: XXXXXX
-
-Read more about the secret: https://developer.github.com/webhooks/securing/
-
-Copy the App ID to your .env
-
-Permissions:
-
-Your app needs the following permissions:
-- Checks (read and write). More info about checks here: https://developer.github.com/v3/checks/runs/
-- Repository contents (read and write).
-- Issues (read and write)
-- Pull requests (read and write)
-
-Subscribe to events:
-- Check suite
-- check run
-- commit comment
-- pull request
-- pull request review
-- pull request review comment
-
-Then, install your app on the repositories you might want.
-
-Then npm install in this repo
+## Resources
 
 Links to check what's up with your app:
 - ahttps://github.com/settings/apps/testgithubapp-sadasant

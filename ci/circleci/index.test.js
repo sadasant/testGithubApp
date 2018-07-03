@@ -1,4 +1,5 @@
 const circleci = require('./')
+const config = require('../../config.json')
 
 describe("CircleCI's main API", () => {
   describe('fetchStatus', () => {
@@ -16,10 +17,7 @@ describe("CircleCI's main API", () => {
         start_time: '2018-07-02T04:16:57.164Z',
         run_time_millis: 5715
       }
-      let expectedResult = `
-PR ROBOT :robot:
----
-
+      let expectedResult = `${config.header}
 
 | Name | Type | Status | Bash Command | Start Time | Duration |
 | ---  | ---  | ---    | ---          | ---        | ---      |
@@ -33,6 +31,46 @@ PR ROBOT :robot:
 Couldn't fetch the output file.
 \`\`\`
 `
+      expect(result).toBe(expectedResult)
+    })
+
+    it('Should properly format a success status', async () => {
+      let result = await circleci.fetchStatus({
+        owner: 'sadasant',
+        repo: 'testGithubApp',
+        branch: 'feature/ci-passed'
+      })
+      let expectedResult = `\n${
+        config.smallHeader
+      } CircleCI Passed! :clap::white_check_mark:`
+      expect(result).toBe(expectedResult)
+    })
+
+    it('Should wait until the build passes', async () => {
+      let params = {
+        owner: 'sadasant',
+        repo: 'testGithubApp',
+        branch: 'feature/ci-queued'
+      }
+      let result = circleci.fetchStatus(params)
+      expect(result).toHaveProperty('then')
+      params.branch = 'feature/ci-passed'
+      result = await result
+      let expectedResult = `\n${
+        config.smallHeader
+      } CircleCI Passed! :clap::white_check_mark:`
+      expect(result).toBe(expectedResult)
+    })
+
+    it('Should fail properly if the last builds are not found', async () => {
+      let result = await circleci.fetchStatus({
+        owner: 'sadasant',
+        repo: 'MISSINGREPO',
+        branch: 'feature/fetchingCircleCIData'
+      })
+      let expectedResult = `\n${
+        config.smallHeader
+      } This repository doesn't seem to be configured with CircleCI.`
       expect(result).toBe(expectedResult)
     })
   })

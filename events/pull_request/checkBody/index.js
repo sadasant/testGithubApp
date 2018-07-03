@@ -24,5 +24,10 @@ module.exports = async context => {
   })
 
   if (body !== newBody)
-    await context.github.pullRequests.update({ owner, repo, number, body: newBody })
+    await context.github.pullRequests.update({
+      owner,
+      repo,
+      number,
+      body: newBody
+    })
 }

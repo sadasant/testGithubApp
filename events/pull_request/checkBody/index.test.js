@@ -31,7 +31,8 @@ describe('pull_request checkBody', () => {
       ).toBe(0)
 
       // Second call
-      payload.pull_request.body = github.pullRequests.update.mock.calls[0][0].body
+      payload.pull_request.body =
+        github.pullRequests.update.mock.calls[0][0].body
       github.pullRequests.update.mockClear()
       await app.receive({ event: 'pull_request', payload })
       expect(github.pullRequests.update).not.toHaveBeenCalled()

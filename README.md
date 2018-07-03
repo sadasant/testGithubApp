@@ -1,4 +1,23 @@
-﻿This is what I have right now:
+# Awesome Concept for a Github App :robot::sparkles:
+
+Welcome to this repo 🖖
+
+This project holds a boilerplate to build Github Apps, with some small functionalities that are both useful as well as just concepts for myself and others to play with. :bowtie: Join me in this journey to discover what else amazing can be done!
+
+## Index
+
+- [Current Features](#current-features)
+- [How to build](#how-to-build)
+- [My reasoning while building this](#my-reasoning-while-building-this)
+  - [Design Decisions](#design-decisions)
+  - [Disclaimer](#disclaimer)
+  - [Now What](#now-what)
+- [Resources](#resources)
+
+## Current Features
+##
+
+This is what I have right now:
 - A folder structure where all the event handlers are grouped by event
   name, so let's say we have a handler called `circleCIStatus` for the
   event `check_suite`, it will be located in

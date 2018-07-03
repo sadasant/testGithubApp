@@ -107,7 +107,7 @@ Right now you can run `npm test` to run the unit tests 🙈✅
 
 <img align="right" height="150px" src="https://pbs.twimg.com/profile_images/632821853627678720/zPKK7jql_400x400.png">
 
-> First, the logo I picked is a reference to Steve McConnell's Code Complete 2, but also a reference to the (perhaps more popular) Jeff Atwood :) Instead of elaborating, I'm going to provide links to his contents:
+> First, the logo I picked for the app is a reference to Steve McConnell's Code Complete 2, but also a reference to the (perhaps more popular) Jeff Atwood :) Instead of elaborating, I'm going to provide links to his contents:
 >
 > - https://twitter.com/codinghorror
 > - https://blog.codinghorror.com/

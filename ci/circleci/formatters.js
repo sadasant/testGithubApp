@@ -6,12 +6,16 @@ const gunzip = util.promisify(zlib.gunzip)
 const stripAnsi = require('strip-ansi')
 const { prettyPlease } = require('../../prettifiers')
 
+// Note: This might be useful as a separate setting in config.json,
+// or perhaps in a folder with "templates". I'm wondering if it would
+// make sense to use JSX for large Github Apps, since Github accepts
+// HTML in their Markdown.
 const actionsHeader = `
 | Name | Type | Status | Bash Command | Start Time | Duration |
 | ---  | ---  | ---    | ---          | ---        | ---      |`
 
 // CircleCI seems to add `#!/bin/bash -eo pipefail` as a separate line
-// before each one of the commands.
+// before each one of the commands. Let's just remove that.
 let cleanCommand = x => x.replace(/^#!\/bin\/bash.*\n/, '')
 
 // Receives a CircleCI's step action, returns a string.
@@ -41,9 +45,12 @@ const formatAction = ({
 // The output will be wrapped in a string with the following shape:
 //   - **name**'s `bash_command`:
 //   ```
-//   output
+//   prettified non ansi output
 //   ```
 // If there's no output_url, returns an empty string.
+// If we are able to fetch and decode an output file,
+// we remove the Ansi characters, then we try to make it perettier
+// with our prettyPlease utility.
 //
 const formatOutput = async ({ name, bash_command, output_url }) => {
   if (!output_url) return ''
@@ -71,7 +78,8 @@ ${result}
 \`\`\``
 }
 
-// Receives a CircleCI's ste, then formats it and every one of it's actions,
+// formatSteps uses most of the functions above, in the sense that it
+// receives a CircleCI's ste, then formats it and every one of it's actions,
 // it also fetches the action's output.
 // The step ends up with the format:
 //   | Name | Type | Status | Bash Command | Start Time | Duration |
@@ -81,11 +89,11 @@ ${result}
 //   Outputs:
 //   - **name**'s `bash_command`:
 //   ```
-//   output
+//   prettified no ansi output
 //   ```
 //   - **name**'s `bash_command`:
 //   ```
-//   output
+//   prettified no ansi output
 //   ```
 //
 const formatSteps = async steps =>
@@ -104,7 +112,6 @@ const formatSteps = async steps =>
 
 // I really want imports and exports :(
 // Should I give it away and make this babel? or TS?
-// But that takes time...
 module.exports = {
   formatAction,
   formatOutput,

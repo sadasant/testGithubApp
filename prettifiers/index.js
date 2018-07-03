@@ -1,9 +1,14 @@
 const prettifiers = [
   require('./jest')
-  // TODO: Mocha & others
+  // TODO: Do the readdirSync thing we do in other places.
+  // TODO: Mocha & others.
 ]
 
 // prettyPlease
+//
+// It will loop over the available prettifiers,
+// calling the first one that validates, and returning
+// the prittified output.
 //
 // I thought on calling this maybePretty
 // or something related to formatting,

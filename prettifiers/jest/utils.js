@@ -7,13 +7,13 @@ const isOrWasFail = (accumulator, value) =>
   value === 'FAIL' || accumulator[accumulator.length - 1] === 'FAIL'
 
 // Finds the lines that start with PASS or FAIL
-// uses them to split the whole output,
+// uses them to split the whole data,
 // then only grabs the pieces that immediatly follow a `FAIL`
 // element.
 //
-const getFailingTests = output =>
+const getFailingTests = data =>
   [[]]
-    .concat(output.split(/\n.*(PASS|FAIL)/))
+    .concat(data.split(/\n.*(PASS|FAIL)/))
     .reduce((a, b) => (isOrWasFail(a, b) ? a.concat(b) : a))
     .filter(x => x !== 'FAIL')
 
@@ -60,9 +60,13 @@ const formatGoodPart = part => {
   return `${firstLine}\n${lines.filter(isGoodLine).join('\n')}`
 }
 
-const formatFail = output => {
+// Formats a failed section of Jest's output.
+// It omits irrelevant parts (using our isGoodPart),
+// then formats the remaining ones, then joins them with the proper
+// spacings and new lines.
+const formatFail = data => {
   let separator = '\n  ● '
-  let parts = output.split(separator)
+  let parts = data.split(separator)
   let goodParts = parts.filter(isGoodPart).map(formatGoodPart)
   return goodParts.length
     ? `\n${parts[0]}${separator}${goodParts.join(separator)}`

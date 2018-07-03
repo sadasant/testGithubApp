@@ -13,7 +13,7 @@ This project holds a boilerplate to build Github Apps, with some small functiona
 - [Folder structure](#folder-structure)
 - [Maybe future features](#maybe-future-features)
 - [How to build](#how-to-build)
-- [I want to use it right now!)(#i-want-to-use-it-right-now)
+- [I want to use it right now!](#i-want-to-use-it-right-now)
 - [Disclaimer](#disclaimer)
 - [Resources](#resources)
 
@@ -104,6 +104,14 @@ I'm currently hosting this app in one of my servers, and it's running intermiten
 Right now you can run `npm test` to run the unit tests 🙈✅
 
 ## Disclaimer
+
+<img align="right" height="150px" src="https://pbs.twimg.com/profile_images/632821853627678720/zPKK7jql_400x400.png">
+
+> First, the logo I picked is a reference to Steve McConnell's Code Complete 2, but also a reference to the (perhaps more popular) Jeff Atwood :) Instead of elaborating, I'm going to provide links to his contents:
+>
+> - https://twitter.com/codinghorror
+> - https://blog.codinghorror.com/
+> - And, [the book from Steve McConnel](https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670/ref=sr_1_1).
 
 I personally believe that this project is a decent blueprint for other Github Apps, and as a tool it offers a decent amount of functionality. However, considering this is my first Github App ever, I'm sure with more experience working on them, some of the design decisions might change.
 

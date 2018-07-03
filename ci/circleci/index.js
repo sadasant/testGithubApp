@@ -21,7 +21,7 @@ const fetchStatus = async params => {
 
   let [{ status, build_num }] = result
 
-  if (status === 'success')
+  if (status === 'success' || status === 'fixed')
     return `\n${config.smallHeader} CircleCI Passed! :clap::white_check_mark:`
 
   if (status === 'queued') {

@@ -4,6 +4,7 @@ const zlib = require('zlib')
 const util = require('util')
 const gunzip = util.promisify(zlib.gunzip)
 const stripAnsi = require('strip-ansi')
+const { prettyPlease } = require('../../prettifiers')
 
 const actionsHeader = `
 | Name | Type | Status | Bash Command | Start Time | Duration |
@@ -54,12 +55,13 @@ const formatOutput = async ({ name, bash_command, output_url }) => {
     })
     let jsonResult = (await gunzip(rawResult)).toString('utf8')
     let arrayResult = JSON.parse(jsonResult)
-    result = arrayResult
-      .map(
-        ({ message, type }) => `# ${type}
-${stripAnsi(message)}`
-      )
-      .join('\n')
+    let formattedParts = []
+    for (let part of arrayResult) {
+      let { message, type } = part
+      formattedParts.push(`# ${type}
+${await prettyPlease(stripAnsi(message))}`)
+    }
+    result = formattedParts.join('\n')
   } catch (e) {
     console.info("Couldn't download and inflate", output_url, e)
   }

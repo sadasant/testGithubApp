@@ -1,0 +1,207 @@
+
+> testgithubapp@1.0.0 test /home/sadasant/code/github.com/sadasant/testGithubApp
+> jest --
+
+FAIL ci/circleci/index.test.js
+  ● Console
+
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/fetchingCircleCIData
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/18
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circle-production-action-output.s3.amazonaws.com/43ba5e1000a5987e937a93b5-sadasant-testGithubApp-107-0?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20180702T043508Z&X-Amz-SignedHeaders=host&X-Amz-Expires=431999&X-Amz-Credential=AKIAIJNI6FA5RIAFFQ7Q%2F20180702%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4c2db6fefc48691b895159e4eb4d6ac093361a489700f726a78f1d2b5718e5de
+    console.info ci/circleci/formatters.js:64
+      Couldn't download and inflate https://circle-production-action-output.s3.amazonaws.com/43ba5e1000a5987e937a93b5-sadasant-testGithubApp-107-0?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20180702T043508Z&X-Amz-SignedHeaders=host&X-Amz-Expires=431999&X-Amz-Credential=AKIAIJNI6FA5RIAFFQ7Q%2F20180702%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4c2db6fefc48691b895159e4eb4d6ac093361a489700f726a78f1d2b5718e5de { Error: unexpected end of file
+          at Zlib.zlibOnError [as onerror] (zlib.js:142:17) errno: -5, code: 'Z_BUF_ERROR' }
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/ci-passed
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/ci-queued
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/ci-passed
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circleci.com/api/v1.1/project/github/sadasant/MISSINGREPO/tree/feature/fetchingCircleCIData
+
+  ● CircleCI's main API › fetchStatus › Should fetch the latest build's status and format it properly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "
+    PR ROBOT :robot:
+    ---
+
+
+    | Name | Type | Status | Bash Command | Start Time | Duration |
+    | ---  | ---  | ---    | ---          | ---        | ---      |
+    |test|test|failed|`npm test`|2018-07-02T04:16:57.164Z|5715 ms|
+
+    **Output:**
+    - **test**'s `np test`:
+    ```
+    Couldn't fetch the output file.
+    ```
+    "
+    Received: "
+    PR ROBOT :robot:
+    ---
+
+
+    | Name | Type | Status | Bash Command | Start Time | Duration |
+    | ---  | ---  | ---    | ---          | ---        | ---      |
+    |test|test|failed|`npm test`|2018-07-02T04:16:57.164Z|5715 ms|
+
+    **Output:**
+    - **test**'s `npm test`:
+    ```
+    Couldn't fetch the output file.
+    ```
+    "
+
+    Difference:
+
+    - Expected
+    + Received
+
+    @@ -6,10 +6,10 @@
+      | Name | Type | Status | Bash Command | Start Time | Duration |
+      | ---  | ---  | ---    | ---          | ---        | ---      |
+      |test|test|failed|`npm test`|2018-07-02T04:16:57.164Z|5715 ms|
+      
+      **Output:**
+    - - **test**'s `np test`:
+    + - **test**'s `npm test`:
+      ```
+      Couldn't fetch the output file.
+      ```
+
+      32 | \`\`\`
+      33 | `
+    > 34 |       expect(result).toBe(expectedResult)
+         |                      ^
+      35 |     })
+      36 | 
+      37 |     it('Should properly format a success status', async () => {
+
+        
+      at Object.it (ci/circleci/index.test.js:34:22)
+
+  ● CircleCI's main API › fetchStatus › Should fail properly if the last builds are not found
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "
+    :robot:  This repoitory doesn't seem to be configured with CircleCI."
+    Received: "
+    :robot:  This repository doesn't seem to be configured with CircleCI."
+
+    Difference:
+
+    - Expected
+    + Received
+
+      
+    - :robot:  This repoitory doesn't seem to be configured with CircleCI.
+    + :robot:  This repository doesn't seem to be configured with CircleCI.
+
+      72 |         config.smallHeader
+      73 |       } This repoitory doesn't seem to be configured with CircleCI.`
+    > 74 |       expect(result).toBe(expectedResult)
+         |                      ^
+      75 |     })
+      76 |   })
+      77 | })
+
+      at Object.it (ci/circleci/index.test.js:74:22)
+
+FAIL events/check_suite/circleCi/index.test.js
+  ● Console
+
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/firstListeners
+
+  ● check_suite CircleCI › should update the PR's body › should work two times
+
+    TypeError: Cannot read property '0' of undefined
+
+      46 |       await app.receive({ event: 'che', payload })
+      47 |       expect(github.pullRequests.update).toHaveBeenCalled()
+    > 48 |       expect(github.pullRequests.update.mock.calls[1][0].body).toBe(body)
+         |              ^
+      49 |     })
+      50 |   })
+      51 | })
+
+      at Object.it (events/check_suite/circleCi/index.test.js:48:14)
+
+[90m01:49:48.304Z[39m [32m INFO[39m probot: [36mActivating check_suite/circleCi ✓[39m
+[90m01:49:48.307Z[39m [32m INFO[39m probot: [36mActivating pull_request/checkBody ✓[39m
+[90m01:49:48.309Z[39m [32m INFO[39m probot: [36mRunning check_suite/circleCi ↣[39m
+[90m01:49:48.601Z[39m [32m INFO[39m probot: [36mActivating check_suite/circleCi ✓[39m
+[90m01:49:48.602Z[39m [32m INFO[39m probot: [36mActivating pull_request/checkBody ✓[39m
+[90m01:49:48.602Z[39m [32m INFO[39m probot: [36mRunning pull_request/checkBody ↣[39m
+[90m01:49:48.635Z[39m [32m INFO[39m probot: [36mRunning pull_request/checkBody ↣[39m
+PASS events/pull_request/checkBody/index.test.js
+  ● Console
+
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/firstListeners
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/firstListeners
+
+PASS ci/circleci/formatters.test.js
+  ● Console
+
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: http://fake.butts.output_url:1337/
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: http://fake.butts.wrong.output_url:1337/
+    console.info ci/circleci/formatters.js:64
+      Couldn't download and inflate http://fake.butts.wrong.output_url:1337/ { Error: unexpected end of file
+          at Zlib.zlibOnError [as onerror] (zlib.js:142:17) errno: -5, code: 'Z_BUF_ERROR' }
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: http://fake.butts.output_url:1337/
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: http://fake.butts.output_url:1337/
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: http://fake.butts.output_url:1337/
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: http://fake.butts.output_url:1337/
+    console.info __mocks__/request-promise.js:32
+      Mocked request-promise: http://fake.butts.output_url:1337/
+
+PASS ci/circleci/transformations.test.js
+PASS utils/strings.test.js
+  ● Console
+
+    console.info utils/strings.test.js:6
+      concatOnce
+      should should only concat a multi-line string once,
+      even if it's called again with it's own output
+
+---------------------------------------------|----------|----------|----------|----------|-------------------|
+File                                         |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+---------------------------------------------|----------|----------|----------|----------|-------------------|
+All files                                    |      100 |      100 |      100 |      100 |                   |
+ testGithubApp                               |      100 |      100 |      100 |      100 |                   |
+  index.js                                   |      100 |      100 |      100 |      100 |                   |
+ testGithubApp/ci/circleci                   |      100 |      100 |      100 |      100 |                   |
+  api.js                                     |      100 |      100 |      100 |      100 |                   |
+  formatters.js                              |      100 |      100 |      100 |      100 |                   |
+  index.js                                   |      100 |      100 |      100 |      100 |                   |
+  transformations.js                         |      100 |      100 |      100 |      100 |                   |
+ testGithubApp/events/check_suite/circleCi   |      100 |      100 |      100 |      100 |                   |
+  index.js                                   |      100 |      100 |      100 |      100 |                   |
+ testGithubApp/events/pull_request/checkBody |      100 |      100 |      100 |      100 |                   |
+  index.js                                   |      100 |      100 |      100 |      100 |                   |
+ testGithubApp/utils                         |      100 |      100 |      100 |      100 |                   |
+  alias.js                                   |      100 |      100 |      100 |      100 |                   |
+  strings.js                                 |      100 |      100 |      100 |      100 |                   |
+---------------------------------------------|----------|----------|----------|----------|-------------------|
+
+Test Suites: 2 failed, 4 passed, 6 total
+Tests:       3 failed, 12 passed, 15 total
+Snapshots:   0 total
+Time:        2.823s
+Ran all test suites.
+npm ERR! Test failed.  See above for more details.

@@ -144,4 +144,40 @@ ${formattedFakeOutputUrl}
       expect(formattedStep).toBe(expectedResult)
     })
   })
+
+  it('Should handle a real output file', async () => {
+    let action = {
+      name: 'lint',
+      type: 'test',
+      status: 'failed',
+      bash_command: 'npm run lint',
+      start_time: '2018-07-01T05:33:58.571Z',
+      run_time_millis: 1024,
+      output_url: 'http://real.output_url:1337/'
+    }
+    let step = {
+      name: 'lint',
+      actions: [action]
+    }
+    let formattedStep = await formatters.formatSteps([step])
+    let expectedResult = `
+| Name | Type | Status | Bash Command | Start Time | Duration |
+| ---  | ---  | ---    | ---          | ---        | ---      |
+|lint|test|failed|\`npm run lint\`|2018-07-01T05:33:58.571Z|1024 ms|
+
+**Output:**
+- **lint**'s \`npm run lint\`:
+\`\`\`
+# out
+FAIL
+  events/check_suite/circleCi/index.test.js
+  ● Checking CircleCI › your functionality › performs an action
+    Cannot find module '../../config.json' from 'api.js'
+    > 2 | const config = require('../../config.json')
+# err
+Exited with code 1
+\`\`\`
+`
+    expect(formattedStep.replace(/\r/g, '')).toBe(expectedResult)
+  })
 })

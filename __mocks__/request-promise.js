@@ -1,10 +1,15 @@
 const zlib = require('zlib')
 const util = require('util')
 const gzip = util.promisify(zlib.gzip)
+const { readFileSync } = require('fs')
+const path = require('path')
 
 const responses = {
-  // Faking it, because the original file has too much info for our tests
-  // 'http://fake.butts.output_url:1337/': readFileSync(path.resolve(`${__dirname}/../fixtures/circleci_failed_step_action_output_url.gz`)),
+  'http://real.output_url:1337/': readFileSync(
+    path.resolve(
+      `${__dirname}/../fixtures/circleci_failed_step_action_output_url.gz`
+    )
+  ),
   'http://fake.butts.output_url:1337/': gzip(
     JSON.stringify([
       {

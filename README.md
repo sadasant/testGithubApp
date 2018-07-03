@@ -5,7 +5,7 @@ Welcome to this repo 🖖
 
 <img align="left" height="150px" src="https://i0.wp.com/gifrific.com/wp-content/uploads/2017/05/terry-crews-dancing-robot.gif?ssl=1">
 This project holds a boilerplate to build Github Apps, with some small functionalities that are both useful as well as just concepts for myself and others to play with. :bowtie: Join me in this journey to discover what else amazing can be done!
-<br/><br/><br/>
+<br/><br/><br/><br/><br/>
 
 ## Index
 
@@ -45,7 +45,7 @@ Besides being useful for end users, I made this repo as a template for me (and p
 ![](https://i.imgur.com/o1ytFXV.png)
 
 **Other neat features for developers:**
-<img align="right" height="300" src="https://i.imgur.com/095rvzR.png">
+<img align="right" height="310" src="https://i.imgur.com/095rvzR.png">
 - It's 100% unit tested! Including functions, API calls to remote endpoints, formattings and dispatching and handling Github Webhook events.
 - We have a minimal layer of mocked utilities - right now I'm only mocking `request-promise` [here](https://github.com/sadasant/testGithubApp/blob/master/__mocks__/request-promise.js), which should prove that you can build entirely functional Github Apps with no connection to the internet! 😆
 - We use `prettier` and `eslint` to automatically format the code of the repository (you still need to call `npm run fmt`). The idea is that we should reduce the number of possible dissagreements over code styles and formats and just let the tools handle that for us :) ... I realize that you might be familiar with that, so let's move to the next point!

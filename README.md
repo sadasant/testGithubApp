@@ -120,6 +120,7 @@ I personally believe that this project is a decent blueprint for other Github Ap
 
 Here's some self criticism:
 - I should have cleaned up the `fixtures`, or not include them in the tree, since they contan information that might not be relevant for the public.
+- I know I could have used the `.env` file for all my configurations, and I also know that [probot-config](https://github.com/probot/probot-config) exists (I even have it in the package.json). Leveraging that file and that tool probably worths it, but I haven't checked.
 - The `ci/circleci` tools, and the `prettifiers/jest/utils.js` utility functions, contain a fair bit of text manipulation that can easily break if an unexpected input appears. We have a strategy that allow us to show a properly formatted text for users in case we weren't able to match anything. I think we could leverage some pattern matching library to be able to do these transformations in an easier way, so I will look into that on the following weeks.
 - Many of the functionalities are thought from a Functional Programming mindset, but not using any sort of functional programming library. Some FP libraries offer abstractions that can allow us to escape from possible null values getting their way into our code to break it, even while designing higher order functions. Since, in my oppinion, formatting is probably the most fragile section of our code, moving this code to use a stricter functional framework or library will allow us to be more secure about unwanted side effects.
 - Another reason: I didn't follow the FP appraoch right away so that I could try to avoid having to argue (even with myself) about wether some FP functionality is better than a normal Object Oriented code. I love funcitonal programing, but some people run away from it, and I think ito's ok. Strict Functional programming only really shines when early correctedness is rewarding, but otherwise it can be a distraction, even an overcomplication.
@@ -142,12 +143,18 @@ Things that I've found difficult:
   webhook secret again both in the Github App's settings and in my
   `.env` file, my Probot started working!
 
-Things that I think I could have done better:
-- I know I could have used the `.env` file for all my configurations, and I also know that [probot-config](https://github.com/probot/probot-config) exists (I even have it in the package.json). Leveraging that file and that tool probably worths it, but I haven't checked.
+It's reall just that, PRobot is amazing and I only ended wanting to improve this repo and build something useful for me over time. Was this useful? It was useful for me! I had fun and I learned a lot of things!
 
 ## Resources
 
-Links to check what's up with your app:
+No matter what you do, please read the docs. Github's documentation is amazing! And CircleCI is pretty decent too. Here are some links (but they link to other pretty useful things, so keep an eye open!):
+- [Getting started with building apps](https://developer.github.com/apps/getting-started-with-building-apps/).
+- Github's [Webhooks](Webhooks).
+- Github's REST API v3 [Event Types & Payloads](https://developer.github.com/v3/activity/events/types/).
+- [CircleCI API v1.1 Reference](https://circleci.com/docs/api/v1-reference/).
+- _Under the hood:_ [GitHub REST API client for Node.js](https://github.com/octokit/rest.js).
+
+Links to check what's up with your app (in this case, my app):
 - ahttps://github.com/settings/apps/testgithubapp-sadasant
 - https://github.com/settings/installations/228280
 

@@ -1,6 +1,6 @@
 {
   "header": "\n\nPR ROBOT :robot:\n---\n",
-  "smallHeader": ":robot: ",
+  "smallHeader": "\n:robot: ",
   "status": {
     "start": "<span data=\"probot-comment-start\"/>",
     "end": "<span data=\"probot-comment-end\"/>"

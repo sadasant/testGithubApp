@@ -1,4 +1,4 @@
-# Awesome Concept for a Github App :robot::sparkles:
+﻿# Awesome Concept for a Github App :robot::sparkles:
 
 Welcome to this repo 🖖
 
@@ -47,15 +47,17 @@ Besides being useful for end users, I made this repo as a template for me (and p
 <img align="right" height="310" src="https://i.imgur.com/095rvzR.png">
 - It's 100% unit tested! Including functions, API calls to remote endpoints, formattings and dispatching and handling Github Webhook events. And these unit tests run _FAST!_
 - We have a minimal layer of mocked utilities - right now I'm only mocking `request-promise` [here](https://github.com/sadasant/testGithubApp/blob/master/__mocks__/request-promise.js), which should prove that you can build entirely functional Github Apps with no connection to the internet! 😆
-- We use `prettier` and `eslint` to automatically format the code of the repository (you still need to call `npm run fmt`). The idea is that we should reduce the number of possible dissagreements over code styles and formats and just let the tools handle that for us :) ... I realize that you might be familiar with that, so let's move to the next point!
-- It has as few dependencies as possible! (See the image at the right. Isn't that pretty?)
+- We use `prettier` and `eslint` to automatically format the code of the repository (you still need to call `npm run fmt`). The idea is that we should reduce the number of possible dissagreements over code styles and formats and just let the tools handle that for us :)
+- It has very few dependencies! (See the image at the right. Isn't that pretty?)
 
 ## Maybe future features
 
 Because this is a concept application, I'm not exploring all the ideas I have, but I still would like this to reach the point where it can do at least these two ideas:
 
 1. Pull Request Review with in-line comments about why CI failed, if CI's output happens to show that any of the files changed by the PR are causing some step to fail. Here's an issue: https://github.com/sadasant/testGithubApp/issues/15
-2. Optionally auto-format code in pull request. I believe that in the output we generate, we could add a link that would trigger us to fork the repo, run run `npm run fmt` and push teh changes to the PR! Here's an issue: https://github.com/sadasant/testGithubApp/issues/17
+2. Optionally auto-format code in pull request. I believe that in the
+output we generate, we could add a link that would trigger us to fork
+the repo, run `npm run fmt` and push the changes to the PR! Here's an issue: https://github.com/sadasant/testGithubApp/issues/17
 
 ## How to build
 
@@ -78,12 +80,12 @@ You'll need NodeJS. I like using nvm, since it gives you the freedom to move bac
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
-Other tools like `npx` look cool! I haven't tried it though.
+Other tools like `npx` look cool! (I haven't tried that one though.)
 
 3. Fork this repo
 
 - Just `git clone https://github.com/sadasant/testGithubApp` is enough :-)
-- Copy the downloaded Private Key to the root of this repo!
+- Copy the downloaded Private Key to the root of this repo.
 - Once in the root of this repo, run `npm install`
 
 4. Create your `.env` file
@@ -100,7 +102,10 @@ Other tools like `npx` look cool! I haven't tried it though.
 
 ## I want to use it right now!
 
-I'm currently hosting this app in one of my servers, and it's running intermitently since I use these servers for other purposes. The APP is live for this repo, but it is unlisted :/ I'm hesitant to list it with so little features. I also dislike the name 🤔
+I'm currently hosting this app in one of my servers, and it's running
+intermitently since I use it for other purposes. The APP is live for this repo, but it is unlisted :/ I'm hesitant to list it with so little features. I also dislike the name 🤔
+As soon as I finish the other features I want to make, I will think on
+a proper name and have an automated way to deploy it.
 
 Right now you can run `npm test` to run the unit tests 🙈✅
 

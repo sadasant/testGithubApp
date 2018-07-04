@@ -11,6 +11,10 @@ let config = require('../../../config.json')
 module.exports = async context => {
   const { owner, repo } = context.repo()
   const { head_branch } = context.payload.check_suite
+
+  let pull_requests = context.payload.check_suite.pull_requests
+  if (!pull_requests || !pull_requests.length) return
+
   const [{ number }] = context.payload.check_suite.pull_requests
   let {
     data: { body }

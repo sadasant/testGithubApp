@@ -16,6 +16,7 @@ const config = require('../../config.json')
 // before trying again.
 // If the latest build failed, it tries to fetch and format the output of the
 // failing steps of the build.
+// If there is no output to show, it tries to repeat the process.
 //
 const fetchStatus = async params => {
   // We are not deconstructing the params on the function delaratiib so we can
@@ -50,6 +51,13 @@ const fetchStatus = async params => {
 
   // Formatting the failing steps of the build
   let failingSteps = filterFailing(steps)
+
+  // If there are no failing steps, let's try to fetch the lates build again,
+  // we might be in some unhandled transition of status
+  if (!failingSteps.length) {
+    await Promise.delay(config.circleCi.delay)
+    return fetchStatus(params)
+  }
 
   // And that's it!
   return `${config.header}\n${await formatSteps(failingSteps)}`

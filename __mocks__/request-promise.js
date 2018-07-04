@@ -30,7 +30,9 @@ const responses = {
   },
   'https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/ci-queued': require('../fixtures/circleci_get_user_repo_tree_branch_queued.json'),
   'https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/ci-passed': require('../fixtures/circleci_get_user_repo_tree_branch.json'),
-  'https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/18': require('../fixtures/circleci_get_user_repo_buildnum_failed.json')
+  'https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/tree/feature/ci-unrecognized': require('../fixtures/circleci_get_user_repo_tree_branch_unrecognized.json'),
+  'https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/18': require('../fixtures/circleci_get_user_repo_buildnum_failed.json'),
+  'https://circleci.com/api/v1.1/project/github/sadasant/testGithubApp/29': require('../fixtures/circleci_get_user_repo_buildnum_unrecognized.json')
 }
 
 module.exports = async params =>

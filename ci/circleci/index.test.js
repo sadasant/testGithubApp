@@ -62,6 +62,22 @@ Couldn't fetch the output file.
       expect(result).toBe(expectedResult)
     })
 
+    it('Should wait until the build has something to show', async () => {
+      let params = {
+        owner: 'sadasant',
+        repo: 'testGithubApp',
+        branch: 'feature/ci-unrecognized'
+      }
+      let result = circleci.fetchStatus(params)
+      expect(result).toHaveProperty('then')
+      params.branch = 'feature/ci-passed'
+      result = await result
+      let expectedResult = `\n${
+        config.smallHeader
+      } CircleCI Passed! :clap::white_check_mark:`
+      expect(result).toBe(expectedResult)
+    })
+
     it('Should fail properly if the last builds are not found', async () => {
       let result = await circleci.fetchStatus({
         owner: 'sadasant',

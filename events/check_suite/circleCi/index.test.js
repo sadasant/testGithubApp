@@ -47,5 +47,13 @@ describe('check_suite CircleCI', () => {
       expect(github.pullRequests.update).toHaveBeenCalled()
       expect(github.pullRequests.update.mock.calls[1][0].body).toBe(body)
     })
+
+    it("should not do anything if the event isn't recognized", async () => {
+      // First call
+      delete payload.check_suite.pull_requests
+      await app.receive({ event: 'check_suite', payload })
+      payload.check_suite.pull_requests = pullRequests
+      expect(github.pullRequests.update).not.toHaveBeenCalled()
+    })
   })
 })
